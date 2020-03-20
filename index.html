@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+
+    
+
+        <title>Spanish Learning App</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+        
+
+    </head>
+
+    
+
+    <body>
+
+    
+
+  <style>
+
+  body {
+
+width:100vw;   
+
+height:100vh; 
+
+}
+
+#mainMenu{
+
+width:100vw;    
+
+height:100vh;
+
+background-color:white;  
+
+display:none;  
+
+}
+
+header{ 
+
+position:fixed;  
+
+right:0em;
+
+top:0em; 
+
+background-image: linear-gradient(to right , #ff512f, #dd2476); 
+
+width:100%; 
+
+height:15%; 
+
+color:#ffae42;
+
+border-radius:1px;
+
+}
+
+#Level{
+
+position:fixed;  
+
+width:40vw;  
+
+font-family:courier new;
+
+height:60vh;
+
+background-color:#7500ff;
+
+border-radius:3%;
+
+color:white;
+
+font-weight:bold;
+
+font-size:1em;
+
+top:15vh;
+
+left:30vw;
+
+text-align:center;
+
+display:none;
+
+}
+
+#learningInterface{
+
+position:fixed;
+
+top:0%;
+
+left:0%;
+
+width:100vw;   
+
+height:100vh; 
+
+background-color:white;   
+
+background-color:#7500ff;
+
+display:none;     
+
+}
+
+#spanishBoard{
+
+width:44vw;
+
+height:50vh;
+
+background-color:yellow;
+
+position:fixed;
+
+top:25%; 
+
+left:5%;  
+
+border-radius:3%;
+
+color:black;
+
+}
+
+#espWords{ 
+
+width:40vw;
+
+height:20vh;
+
+position:fixed;
+
+top:40%; 
+
+left:5%;  
+
+color:black;
+
+font-family:Courier new;
+
+font-weight:bold;
+
+text-align:center; 
+
+font-size:0.8em;
+
+letter-spacing: 0.2em;   
+
+}
+
+#englishBoard{
+
+width:44vw;
+
+height:50vh;
+
+background-color:orange;
+
+position:fixed;
+
+top:25%; 
+
+right:5%;  
+
+border-radius:3%;
+
+color:black;
+
+}
+
+#enWords{ 
+
+width:40vw;
+
+height:20vh;
+
+position:fixed;
+
+top:40%; 
+
+right:5%;  
+
+color:black;
+
+font-family:Courier new;
+
+font-weight:bold;
+
+text-align:center; 
+
+font-size:0.8em;
+
+letter-spacing: 0.2em; 
+
+word-wrap: break-word;  
+
+}
+
+#cancelButton{
+
+ 
+
+position:fixed;
+
+top:10%; 
+
+left:10%;  
+
+border-radius:3%;
+
+font-family:Courier new;
+
+font-weight:bold;
+
+text-align:center; 
+
+font-size:2em;
+
+letter-spacing: 0.2em;   
+
+color:black;
+
+}
+
+#line1{
+
+position:fixed; 
+
+width:100vw;  
+
+height:0.5vh; 
+
+left:0%;
+
+top:20%;
+
+background-color:#7500ff;
+
+border-radius:3%;    
+
+}
+
+#line2{
+
+position:fixed; 
+
+width:100vw;  
+
+height:0.5vh; 
+
+left:0%;
+
+bottom:20%;
+
+background-color:#7500ff;
+
+border-radius:3%;    
+
+}
+
+#nextButton{
+
+width:15vw;
+
+height:6vh;
+
+background-color:black; 
+
+position:fixed;
+
+top:80%; 
+
+left:44%;  
+
+border-radius:10%;
+
+color:#7500ff;
+
+font-family:Courier new;
+
+font-weight:bold;
+
+text-align:center; 
+
+font-size:1em;    
+
+    
+
+}
+
+#title2{
+
+width:5vw;
+
+height:5vh;
+
+background-color:none; 
+
+position:fixed;
+
+top:20%; 
+
+right:24%;  
+
+border-radius:3%;
+
+color:black;
+
+font-family:Courier new;
+
+font-weight:bold;
+
+text-align:center; 
+
+font-size:0.7em;    
+
+    
+
+}
+
+#title1{
+
+width:5vw;
+
+height:5vh;
+
+background-color:none; 
+
+position:fixed;
+
+top:20%; 
+
+left:10%;  
+
+border-radius:3%;
+
+color:#7500ff;
+
+font-family:Courier new;
+
+font-weight:bold;
+
+text-align:center; 
+
+font-size:0.7em;    
+
+    
+
+}
+
+#congrats{
+
+position:fixed;  
+
+width:40vw;  
+
+font-family:courier new;
+
+height:60vh;
+
+background-color:#7500ff;
+
+background-image: linear-gradient(to right , #ff512f, #dd2476); 
+
+border-radius:3%;
+
+color:white;
+
+font-weight:bold;
+
+font-size:1em;
+
+top:15vh;
+
+left:30vw;
+
+text-align:center;
+
+display:none;
+
+}
+
+#showProgress{
+
+position:fixed;  
+
+top:8vh;
+
+left:80vw;    
+
+font-weight:bold;
+
+font-size:1em;
+
+color:white;    
+
+font-family:courier new;    
+
+}
+
+.unselectable {
+
+    -webkit-touch-callout: none;
+
+    -webkit-user-select: none;
+
+    -khtml-user-select: none;
+
+    -moz-user-select: none;
+
+    -ms-user-select: none;
+
+    user-select: none;
+
+}   
+
+  
+
+  
+
+#Crediting{
+
+position:fixed;  
+
+width:40vw;  
+
+font-family:courier new;
+
+height:60vh;
+
+background-color:orange;
+
+border-radius:3%;
+
+color:white;
+
+font-weight:bold;
+
+font-size:1em;
+
+top:15vh;
+
+left:30vw;
+
+text-align:center;
+
+display:none;
+
+}
+
+#CcancelButton{
+
+ 
+
+position:fixed;
+
+top:10%; 
+
+left:10%;  
+
+border-radius:3%;
+
+font-family:Courier new;
+
+font-weight:bold;
+
+text-align:center; 
+
+font-size:2em;
+
+letter-spacing: 0.2em;   
+
+color:orange;
+
+}
+
+  
+
+      
+
+  </style>  
+
+  
+
+   <div id="splashScreen" style="background-image: linear-gradient(to right , #ff512f, #dd2476); position:fixed; top:0vh; left:0vw; width:100vw; height:100vh;">
+
+    
+
+    <div style="font-family: 'Courier New', Courier, monospace; position:fixed; top:40%; left:25%; font-weight:bold; color:white; ">Spanish Learning App</div>
+
+    
+
+    <progress style="position:fixed; height:2.5vh; width:80vw; top:80%; left:10%;"></progress>
+
+    
+
+    </div> 
+
+        
+
+    
+
+    
+
+    <div id="mainMenu"> 
+
+  <header></header> 
+
+  <p class="unselectable" style="position:fixed; top:3vh; left:1vw; color:white; font-size:3.3vh; text-align:justify; font-weight:bold; text-align-last:center; white-space:normal; font-family: 'Courier New', Courier, monospace; outline-color:#black; outline-style:none;">SLA</p> 
+
+  <img src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/dictionary.png' style="position:fixed; top:25%; left:43%; width:10vh; height:10vh;" onclick="levelOpen();"></a>
+
+    
+
+<p class="unselectable" style="position:fixed; top:34%; left:42%; color:orange; font-size:0.6em;  font-weight:bold; text-align-last:left; white-space:normal; font-family: 'Courier New', Courier, monospace;">New Vocabs</p>
+
+<a href="https://oconquest.github.io/spresource/"><img src='https://images.vexels.com/media/users/3/141267/isolated/preview/06dafa26d8fc91be88a21c96551b21e0-stack-of-books-by-vexels.png' style="position:fixed; top:55%; left:0%; width:10vh; height:10vh;"></a>
+
+<p class="unselectable" style="position:fixed; top:62vh; left:0vw; color:orange; font-size:0.6em; text-align:justify; font-weight:bold; text-align-last:center; white-space:normal; font-family: 'Courier New', Courier, monospace; outline-color:black; outline-style:none;">++Resources </p>
+
+<img src="https://www.legalzoom.com/sites/legalzoom.com/files/uploaded/articles/how_to_use_the_copyright_symbol.jpg" style="position:fixed; top:55%; right:5%; width:10vh; height:10vh;" onclick="openCredit();">
+
+<p class="unselectable" style="position:fixed; top:64vh; right:5vw; color:orange; font-size:0.6em; text-align:justify; font-weight:bold; text-align-last:center; white-space:normal; font-family: 'Courier New', Courier, monospace; outline-color:black; outline-style:none;" onclick="openCredit();">Credits</p>
+
+</div>
+
+    
+
+    
+
+    <div id="learningInterface">
+
+    
+
+    <p id="showProgress" class="unselectable"></p>
+
+    
+
+    <div id="boardUI"></div>
+
+    
+
+    <div id="cancelButton" onclick="backToMenu();" class="unselectable">X</div>
+
+    
+
+    <div id="spanishBoard"><p id="espWords">Dejar</p>  </div>
+
+    
+
+    <div id="englishBoard"><p id="enWords">to allow leave</p> </div>
+
+    
+
+    <div onclick="nextWord();" id="nextButton" class="unselectable">NEXT</div>
+
+    
+
+      <div id="title1">Español</div>
+
+       
+
+      <div id="title2">English</div> 
+
+      
+
+      
+
+      
+
+     
+
+      </div>
+
+      
+
+      
+
+    </div> 
+
+    
+
+    
+
+    <div id="Level" onclick="boardOpen();"><p id="p1">
+
+      Better to learn 1 new word every day, than none at all
+
+      
+
+      <br>
+
+      <br>
+
+      Click to learn new words
+
+       </p><p id="p2">>>></p>
+
+           
+
+       </div> 
+
+       
+
+       <div id="congrats" onclick="levelOpen();"><p>Level Completed
+
+       
+
+    
+
+        <br />
+
+        
+
+        😎💪
+
+        
+
+        <br />
+
+       
+
+        Click to continue>>
+
+        
+
+        <br />
+
+        
+
+        <br />
+
+       
+
+       
+
+       </p><p>🔓</p>
+
+           
+
+       </div> 
+
+       
+
+              <div id="Crediting" onclick="              closeCredit();"><p>
+
+A frequency dictionary of  Spanish-
+
+<br />
+
+<br />
+
+By Mark Davies©
+
+<br />
+
+<br />
+
+<a href="https://en.m.wikipedia.org/wiki/Mark_Davies_(linguist)">Mark Davies Wiki</a>
+
+<br />
+
+<br />
+
+All right reserved to the original author
+
+       </p><p></p>
+
+           
+
+           <div id="CcancelButton" onclick="closeCredit();" class="unselectable">X</div>
+
+       </div>
+
+    
+
+       
+
+       
+
+       
+
+   <script src="https://oconquest.github.io/SlAjs/"></script>    
+
+    
+
+    <script>
+
+        
+
+  var userProgress=0;
+
+  
+
+  
+
+  
+
+  var loop;
+
+function datacode(){
+
+      
+
+if (localStorage.getItem('userprogress')){
+
+userProgress= localStorage.getItem('userprogress');
+
+ 
+
+  }else{ 
+
+  
+
+localStorage.setItem('userprogress', userProgress);
+
+  
+
+  //Data item doesn't exist, 
+
+ }
+
+    
+
+    
+
+}
+
+window.onload= function loadScreen(){
+
+var splash= document.getElementById("splashScreen");
+
+var menu= document.getElementById("mainMenu");
+
+setTimeout(function(){ splash.style.display="none"; menu.style.display="block"; }, 1250);
+
+datacode();  
+
+    
+
+}
+
+function levelDone(){
+
+var congrats= document.getElementById("congrats");
+
+var board= document.getElementById("learningInterface");
+
+var nums=[100,200,300,400,500,600,700,800,900,1000,1200,1300,1400,1500,1600,1700,1900,2000,2100,2200,2300,2400,2500,2600,2700,2800,2900,3000,3100,3200,3300];
+
+if(nums.includes(userProgress)){
+
+ board.style.display="none"; 
+
+congrats.style.display="block";   
+
+    
+
+}  
+
+    
+
+    
+
+    
+
+}
+
+function levelOpen(){
+
+var level= document.getElementById("Level");
+
+var menu= document.getElementById("mainMenu");
+
+var congrats= document.getElementById("congrats");
+
+congrats.style.display="none"; 
+
+menu.style.display="none"; 
+
+level.style.display="block";
+
+    
+
+    
+
+}
+
+function updateProgress(){
+
+document.getElementById("showProgress").innerText= userProgress + ""
+
+    
+
+    
+
+}
+
+function loadBoard(){
+
+document.getElementById("enWords").innerText= englishWords[userProgress];
+
+document.getElementById("espWords").innerText= spanishWords[userProgress];
+
+    
+
+}
+
+function boardOpen(){
+
+var level= document.getElementById("Level");
+
+var board= document.getElementById("learningInterface");
+
+level.style.display= "none";
+
+board.style.display= "block";
+
+loadBoard();
+
+setInterval(updateProgress,1);
+
+    
+
+}
+
+function backToMenu(){
+
+var menu= document.getElementById("mainMenu");
+
+var board= document.getElementById("learningInterface");
+
+board.style.display= "none";
+
+menu.style.display= "block";
+
+clearInterval(loop);
+
+    
+
+}
+
+function displayUrgeOn(){
+
+var congrat= document.getElementById("congrats");
+
+var board= document.getElementById("LearningInterface");
+
+congrats.style.display="block";
+
+board.style.display="none";
+
+    
+
+    
+
+}
+
+function  nextWord(){
+
+userProgress++;
+
+levelDone();
+
+loadBoard(); 
+
+ localStorage.setItem('userprogress', userProgress);  
+
+    
+
+}
+
+function openCredit(){
+
+var credit= document.getElementById("Crediting");
+
+var menu= document.getElementById("mainMenu");
+
+credit.style.display= "block";
+
+menu.style.display= "none";
+
+    
+
+}
+
+function closeCredit(){
+
+var m= document.getElementById("mainMenu");
+
+var bo= document.getElementById("Crediting");
+
+bo.style.display= "none";
+
+m.style.display= "block";
+
+    
+
+}
+
+        
+
+    </script>
+
+       
+
+    </body>
+
+    
+
+</html>
